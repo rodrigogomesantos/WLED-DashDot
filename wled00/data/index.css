@@ -34,6 +34,8 @@
 	--bhd: none;
 	--sgp: "block";
 	--bmt: 0px;
+
+	--primary-color: #2892ff;
 }
 
 html {
@@ -255,6 +257,7 @@ button {
 	left: 0;
 	width: 100%;
 	background-color: var(--c-tb);
+	display: flex;
 }
 
 .tab button {
@@ -262,8 +265,8 @@ button {
 	float: left;
 	border: none;
 	transition: color 0.3s, background-color 0.3s;
-	font-size: 17px;
-	color: var(--c-c);
+	font-size: 1.2em;
+	color: var(--c-8);
 	min-width: 44px;
 }
 
@@ -279,18 +282,16 @@ button {
 }
 
 .tab button:hover {
-	background-color: var(--c-tbh);
-	color: var(--c-e);
+	color: var(--c-f);
 }
 
 .tab button.active {
-	background-color: var(--c-tba) !important;
-	color: var(--c-f);
+	color: var(--primary-color);
+	filter: drop-shadow(0 0 15px);
 }
 
 .active {
-	background-color: var(--c-6) !important;
-	color: var(--c-f);
+	color: var(--primary-color);
 }
 
 .container {
@@ -346,7 +347,10 @@ button {
 	margin: 0 0 -5px 0;
 	padding-bottom: 4px;
 	display: var(--bhd);
+	color: unset;
+	font-size: 0.6em;
 }
+
 
 .overlay {
 	position: fixed;
@@ -379,10 +383,16 @@ button {
 }
 
 #sliders {
-	width: 300px;
-	margin: 0 auto;
-	position: sticky;
-	bottom: 0;
+	width: 88vw;
+    margin: 0 auto;
+    position: sticky;
+    bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: var(--c-3);
+    border-radius: 15px;
+    padding: 1rem 1rem 0;
 }
 
 #sliders .labels {
@@ -1301,6 +1311,10 @@ TD .checkmark, TD .radiomark {
 #pcont .selected:not([class*="expanded"]) {
 	bottom: 52px;
 	top: 42px;
+}
+
+#fxlist {
+
 }
 
 #fxlist .lstI.selected {

@@ -66,6 +66,7 @@ input {
   color: #fff;
   font-family: Verdana, sans-serif;
   border: 0.5ch solid #333;
+  border-radius: 1.3rem;
 }
 input:disabled {
   color: #888;
@@ -163,6 +164,11 @@ td {
 	background-color: #b21;
 	animation: fadein 0.5s;
 }
+
+/* Settings CSS */
+
+
+
 
 @media screen and (max-width: 767px) {
   input[type="text"],

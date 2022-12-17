@@ -32,6 +32,8 @@
 	--bbp: 9px 0 7px 0;
 	--bhd: none;
 	--bmt: 0px;
+
+	--primary-color: #48a;
 }
 
 html {
@@ -209,7 +211,8 @@ button:hover {
 
 .container {
 	width: 100%;
-	height: calc(100% - var(--tp) - var(--bh));
+	height: 100%;
+	/* height: calc(100% - var(--tp) - var(--bh)); */
 	margin-top: var(--tp);
 	overscroll-behavior: none;
 }
@@ -750,6 +753,7 @@ input[type=number]::-webkit-outer-spin-button {
     margin: auto auto 20px;
 	font-size: 19px;
 	line-height: 24px;
+	padding-bottom: calc(var(--tp) + var(--bh));
 }
 
 .lstI {
