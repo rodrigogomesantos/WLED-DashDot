@@ -1,8 +1,48 @@
+:root {
+  --c-1: #111;
+  --c-f: #fff;
+  --c-2: #222;
+  --c-3: #333;
+  --c-4: #444;
+  --c-5: #555;
+  --c-6: #666;
+  --c-8: #888;
+  --c-b: #bbb;
+  --c-c: #ccc;
+  --c-e: #eee;
+  --c-d: #ddd;
+  --c-r: #c32;
+  --c-g: #2c1;
+  --c-l: #48a;
+  --c-y: #a90;
+  --t-b: 0.5;
+  --c-o: rgba(34, 34, 34, 0.9);
+  --c-tb: rgba(34, 34, 34, var(--t-b));
+  --c-tba: rgba(102, 102, 102, var(--t-b));
+  --c-tbh: rgba(51, 51, 51, var(--t-b));
+  /*following are internal*/
+  --th: 70px;
+  --tp: 70px;
+  --bh: 63px;
+  --tbp: 14px 14px 10px 14px;
+  --bbp: 9px 0 7px 0;
+  --bhd: none;
+  --sgp: 'block';
+  --bmt: 0px;
+
+  --primary-color: #2892ff;
+  --primary-hover-color: #0054a8;
+  --secondary-color: #ff8a46;
+  --secondary-hover-color: #ff6600;
+  --border-input-radius: 0.4rem;
+  --font-family: 'Gill Sans', sans-serif;
+}
+
 html {
-	touch-action: manipulation;
+  touch-action: manipulation;
 }
 body {
-  font-family: Verdana, sans-serif;
+  font-family: var(--font-family);
   font-size: 1rem;
   text-align: center;
   background: #222;
@@ -10,22 +50,29 @@ body {
   line-height: 200%;
   margin: 0;
 }
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 hr {
   border-color: #666;
 }
 hr.sml {
   width: 260px;
 }
-a, a:hover {
+a,
+a:hover {
   color: #28f;
   text-decoration: none;
 }
-button, .btn {
+button,
+.btn {
   background: #333;
   color: #fff;
-  font-family: Verdana, sans-serif;
+  font-family: var(--font-family);
   border: 0.3ch solid #333;
-	border-radius: 24px;
+  border-radius: 24px;
   display: inline-block;
   font-size: 20px;
   margin: 12px 8px 8px;
@@ -47,8 +94,8 @@ button.sml {
 .toprow {
   top: 0;
   position: sticky;
-  background-color:#222;
-  z-index:1;
+  background-color: #222;
+  z-index: 1;
 }
 .lnk {
   border: 0;
@@ -61,52 +108,80 @@ button.sml {
 .hide {
   display: none;
 }
+.flex{
+  display: flex;
+}
 input {
   background: #333;
   color: #fff;
-  font-family: Verdana, sans-serif;
+  font-family: var(--font-family);
   border: 0.5ch solid #333;
-  border-radius: 1.3rem;
+  border-radius: var(--border-input-radius);
+  width: -webkit-fill-available;
+  height: 1.2rem;
 }
 input:disabled {
   color: #888;
 }
-input[type="text"],
-input[type="number"],
-select {
-    font-size: medium;
-    margin: 2px;
-  }
-input[type="number"] {
-  width: 4em;
+input[type='text']:focus-visible,
+input[type='number']:focus-visible,
+input[type='password']:focus-visible {
+  outline: 2px solid var(--primary-color);
 }
-input[type="number"].xxl {
+
+input[type='text'],
+input[type='number'],
+select {
+  font-size: medium;
+  margin: 2px;
+  border-radius: var(--border-input-radius);
+}
+/* input[type='number'] {
+  width: 14%;
+} */
+/* input[type='number'].xxl {
   width: 100px;
 }
-input[type="number"].xl {
+input[type='number'].xl {
   width: 85px;
 }
-input[type="number"].l {
+input[type='number'].l {
   width: 64px;
 }
-input[type="number"].m {
+input[type='number'].m {
   width: 56px;
 }
-input[type="number"].s {
+input[type='number'].s {
   width: 48px;
 }
-input[type="number"].xs {
+input[type='number'].xs {
   width: 40px;
+} */
+input[type='checkbox'] {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  height: 1em;
+  width: 2em;
+  border-radius: 1em;
+  box-shadow: inset -1em 0 0 0 var(--c-6);
+  background-color: #fff;
+  border: 2px solid var(--c-3);
+  outline: 0;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  margin: none;
+  vertical-align: sub;
+  font-size: 1.3rem;
 }
-input[type="checkbox"] {
-  transform: scale(1.5);
-  margin-right: 10px;
+
+input[type='checkbox']:checked {
+  box-shadow: inset 1em 0 0 0 var(--primary-color);
+  border: 2px solid var(--primary-hover-color);
 }
-td input[type="checkbox"] {
-  margin-right: revert;
-}
-input[type=file] {
-  font-size: 16px
+input[type='file'] {
+  font-size: 16px;
 }
 select {
   margin: 2px;
@@ -125,8 +200,8 @@ td {
   width: 4rem !important;
 }
 .cal {
-  font-size:1.5rem;
-  cursor:pointer
+  font-size: 1.5rem;
+  cursor: pointer;
 }
 #TMT table {
   width: 100%;
@@ -137,58 +212,86 @@ td {
 }
 
 #toast {
-	opacity: 0;
-	background-color: #444;
-	border-radius: 5px;
-	bottom: 64px;
-	color: #fff;
-	font-size: 17px;
-	padding: 16px;
-	pointer-events: none;
-	position: fixed;
-	text-align: center;
-	z-index: 5;
-	transform: translateX(-50%);
+  opacity: 0;
+  background-color: #444;
+  border-radius: 5px;
+  bottom: 64px;
+  color: #fff;
+  font-size: 17px;
+  padding: 16px;
+  pointer-events: none;
+  position: fixed;
+  text-align: center;
+  z-index: 5;
+  transform: translateX(-50%);
   max-width: 90%;
-	left: 50%;
+  left: 50%;
 }
 
 #toast.show {
-	opacity: 1;
-	background-color: #264;
-	animation: fadein 0.5s, fadein 0.5s 2.5s reverse;
+  opacity: 1;
+  background-color: #264;
+  animation: fadein 0.5s, fadein 0.5s 2.5s reverse;
 }
 
 #toast.error {
-	opacity: 1;
-	background-color: #b21;
-	animation: fadein 0.5s;
+  opacity: 1;
+  background-color: #b21;
+  animation: fadein 0.5s;
 }
 
 /* Settings CSS */
 
+.config {
+  max-width: 500px;
+  padding: 0 1rem 0 1rem;
+  margin: 0 auto;
+  text-align: initial;
+}
+.config h4 {
+  text-transform: uppercase;
+  color: var(--c-8);
+  text-align: left;
+}
+.config > section.column {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
 
+.config > section.column {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.config > section p {
+  margin: 0;
+  color: var(--c-b);
+}
+
+.config > section > ul > li {
+  margin-bottom: 1rem;
+}
 
 
 @media screen and (max-width: 767px) {
-  input[type="text"],
-  input[type="file"],
-  input[type="number"],
-  input[type="email"],
-  input[type="tel"],
-  input[type="password"] {
+  input[type='text'],
+  input[type='file'],
+  input[type='number'],
+  input[type='email'],
+  input[type='tel'],
+  input[type='password'] {
     font-size: 16px;
   }
 }
 
 @media screen and (max-width: 480px) {
-  input[type="number"].s {
+  /* input[type='number'].s {
     width: 40px;
   }
-  input[type="number"].xs {
+  input[type='number'].xs {
     width: 32px;
-  }
-  input[type="file"] {
+  } */
+  input[type='file'] {
     width: 224px;
   }
   #btns select {
