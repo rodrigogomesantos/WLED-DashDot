@@ -36,6 +36,7 @@
   --secondary-hover-color: #ff6600;
   --border-input-radius: 0.4rem;
   --font-family: 'Gill Sans', sans-serif;
+  --max-config-width: 500px;
 }
 
 html {
@@ -96,19 +97,26 @@ button.sml {
   position: sticky;
   background-color: #222;
   z-index: 1;
+  
+}
+.toprow > div {
+  max-width: var(--max-config-width);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
 }
 .lnk {
   border: 0;
 }
 .helpB {
   text-align: left;
-  position: absolute;
+  /* position: absolute; */
   width: 60px;
 }
 .hide {
   display: none;
 }
-.flex{
+.flex {
   display: flex;
 }
 input {
@@ -196,6 +204,18 @@ tr {
 td {
   padding: 2px;
 }
+.d-flex{
+  display: flex;
+}
+.mr-2{
+  margin-left: 0.6rem;
+}
+.justify-start {
+  justify-content: flex-start;
+}
+.justify-space-between{
+  justify-content: space-between;
+}
 .d5 {
   width: 4rem !important;
 }
@@ -243,7 +263,7 @@ td {
 /* Settings CSS */
 
 .config {
-  max-width: 500px;
+  max-width: var(--max-config-width);
   padding: 0 1rem 0 1rem;
   margin: 0 auto;
   text-align: initial;
@@ -252,6 +272,7 @@ td {
   text-transform: uppercase;
   color: var(--c-8);
   text-align: left;
+  margin-top: 4rem;
 }
 .config > section.column {
   display: grid;
@@ -265,13 +286,41 @@ td {
 
 .config > section p {
   margin: 0;
-  color: var(--c-b);
+  /* color: var(--c-b); */
 }
 
 .config > section > ul > li {
   margin-bottom: 1rem;
 }
+.config h5 {
+  margin: -0.4rem 0px 2.4px;
+  color: var(--c-6);
+  line-height: 1.2rem;
+  text-transform: initial;
+}
 
+.config .two-column  {
+  display: flex;
+  justify-content: space-between;
+}
+
+.two-column-input-list div{
+  display: flex;
+  justify-content: start
+}
+.two-column-input-list div p{
+ margin-left: 0.6rem;
+}
+
+
+.config input[type='checkbox'] {
+  margin-left: 0;
+  flex: none;
+}
+
+.config td{
+  text-align: center;
+}
 
 @media screen and (max-width: 767px) {
   input[type='text'],
