@@ -30,6 +30,7 @@
   --sgp: 'block';
   --bmt: 0px;
 
+  --background-color: #222;
   --primary-color: #2892ff;
   --primary-hover-color: #0054a8;
   --secondary-color: #ff8a46;
@@ -46,7 +47,7 @@ body {
   font-family: var(--font-family);
   font-size: 1rem;
   text-align: center;
-  background: #222;
+  background-color: var(--background-color);
   color: #fff;
   line-height: 200%;
   margin: 0;
@@ -69,10 +70,10 @@ a:hover {
 }
 button,
 .btn {
-  background: #333;
+  background: var(--background-color);
   color: #fff;
   font-family: var(--font-family);
-  border: 0.3ch solid #333;
+  border: 0.3ch solid  var(--background-color);
   border-radius: 24px;
   display: inline-block;
   font-size: 20px;
@@ -97,7 +98,6 @@ button.sml {
   position: sticky;
   background-color: #222;
   z-index: 1;
-  
 }
 .toprow > div {
   max-width: var(--max-config-width);
@@ -181,12 +181,15 @@ input[type='checkbox'] {
   transition: 0.2s;
   margin: none;
   vertical-align: sub;
-  font-size: 1.3rem;
+  font-size: 1.7rem;
 }
 
 input[type='checkbox']:checked {
   box-shadow: inset 1em 0 0 0 var(--primary-color);
   border: 2px solid var(--primary-hover-color);
+  /* color: rgba(var(--primary-color), 0.8); */
+  color: var(--primary-color);
+  filter: drop-shadow(0 0 30px);
 }
 input[type='file'] {
   font-size: 16px;
@@ -204,16 +207,16 @@ tr {
 td {
   padding: 2px;
 }
-.d-flex{
+.d-flex {
   display: flex;
 }
-.mr-2{
+.mr-2 {
   margin-left: 0.6rem;
 }
 .justify-start {
   justify-content: flex-start;
 }
-.justify-space-between{
+.justify-space-between {
   justify-content: space-between;
 }
 .d5 {
@@ -274,6 +277,59 @@ td {
   text-align: left;
   margin-top: 4rem;
 }
+.config h5 {
+  margin: -0.4rem 0px 2.4px;
+  color: var(--c-6);
+  line-height: 1.2rem;
+  text-transform: initial;
+}
+.config hr {
+  border-color: var(--c-3);
+  margin-top: 4rem;
+}
+.config td {
+  text-align: center;
+}
+.config input[type='checkbox'] {
+  margin-left: 0;
+  flex: none;
+}
+.config .table {
+  overflow-x: scroll;
+  padding-right: 1rem;
+  /* margin-left: 3.5em; */
+  height: 7rem;
+}
+.config .table th {
+  /* position: sticky;
+  width: 4em;
+  margin-top: 8px; */
+  text-align: right;
+}
+/* .config .table::before {
+  content: '';
+    height: 7rem;
+    width: 50px;
+    background: linear-gradient( 90deg,  var(--background-color) 50%, rgba(255, 255, 255, 0) 100% );
+    position: absolute;
+    margin-left:-1.5rem;
+    z-index: 1;
+} */
+
+.config .table::after {
+  content: '';
+  height: 7rem;
+  width: 50px;
+  background: linear-gradient(-90deg, var(--background-color) 41%, rgba(255,255,255,0) 100%);
+  position: absolute;
+  right: 0;
+  z-index: 1;
+  margin-top: -6rem;
+}
+
+.config .table input[type='checkbox'] {
+  font-size: 1.5rem;
+}
 .config > section.column {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -292,34 +348,22 @@ td {
 .config > section > ul > li {
   margin-bottom: 1rem;
 }
-.config h5 {
-  margin: -0.4rem 0px 2.4px;
-  color: var(--c-6);
-  line-height: 1.2rem;
-  text-transform: initial;
-}
 
-.config .two-column  {
+.config .two-column {
   display: flex;
   justify-content: space-between;
+  margin-top: 2rem;
+}
+.config .two-column > input[type='checkbox'] {
+  margin-left: 1rem;
 }
 
-.two-column-input-list div{
+.two-column-input-list div {
   display: flex;
-  justify-content: start
+  justify-content: start;
 }
-.two-column-input-list div p{
- margin-left: 0.6rem;
-}
-
-
-.config input[type='checkbox'] {
-  margin-left: 0;
-  flex: none;
-}
-
-.config td{
-  text-align: center;
+.two-column-input-list div {
+  margin-left: 0.6rem;
 }
 
 @media screen and (max-width: 767px) {

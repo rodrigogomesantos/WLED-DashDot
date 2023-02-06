@@ -78,7 +78,7 @@
               <input type="text" name="CS" maxlength="32" />
             </li>
             <li>
-              <p>Network password:</p>
+              <p>Network password</p>
               <input type="password" name="CP" maxlength="63" /><br />
             </li>
             <li>
@@ -214,6 +214,7 @@
             </li>
           </ul>
         </section>
+        <hr />
         <h4>Configure Access Point</h4>
         <section>
           <ul>
@@ -223,11 +224,11 @@
               <input type="text" name="AS" maxlength="32" />
             </li>
             <li class="two-column">
-              <input type="checkbox" name="AH" /><p>Hide AP name </p>
+              <p>Hide AP name </p><input type="checkbox" name="AH" />
             </li>
             <li>
               <p>AP password</p>
-              <h5>leave empty for open</h5>
+              <h5>Leave empty for open</h5>
               <input
                 type="password"
                 name="AP"
@@ -261,11 +262,11 @@
             </li>
           </ul>
         </section>
+        <hr />
         <h4>⚠ Experimental</h4>
         <section>
           <ul>
             <li class="two-column">
-              <input type="checkbox" name="WS" />
               <div>
                 <p>Disable WiFi sleep</p>
                 <h5>
@@ -273,7 +274,7 @@
                   working correctly, increases power consumption.
                 </h5>
               </div>
-             
+              <input type="checkbox" name="WS" />
             </li>
             <li>
               <div id="ethd">
