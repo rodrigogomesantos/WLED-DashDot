@@ -228,6 +228,9 @@ bool deserializeConfig(JsonObject doc, bool fromFS) {
       } else {
         btnPin[s] = -1;
       }
+      JsonArray hw_btn_ins_0_touchThreshold = btn["touchThreshold"];
+      CJSON(touchThresholds[s], hw_btn_ins_0_touchThreshold[0]);
+
       JsonArray hw_btn_ins_0_macros = btn["macros"];
       CJSON(macroButton[s], hw_btn_ins_0_macros[0]);
       CJSON(macroLongPress[s],hw_btn_ins_0_macros[1]);
@@ -241,6 +244,7 @@ bool deserializeConfig(JsonObject doc, bool fromFS) {
       macroButton[s]      = 0;
       macroLongPress[s]   = 0;
       macroDoublePress[s] = 0;
+      touchThresholds[s]  = 0;
     }
   } else {
     // new install/missing configuration (button 0 has defaults)
@@ -256,10 +260,11 @@ bool deserializeConfig(JsonObject doc, bool fromFS) {
         macroButton[s]      = 0;
         macroLongPress[s]   = 0;
         macroDoublePress[s] = 0;
+        touchThresholds[s]  = 0;
       }
     }
   }
-  CJSON(touchThreshold,btn_obj[F("tt")]);
+  // CJSON(touchThreshold,btn_obj[F("tt")]);
   CJSON(buttonPublishMqtt,btn_obj["mqtt"]);
 
   int hw_ir_pin = hw["ir"]["pin"] | -2; // 4
@@ -766,10 +771,14 @@ void serializeConfig() {
     hw_btn_ins_0["type"] = buttonType[i];
     JsonArray hw_btn_ins_0_pin = hw_btn_ins_0.createNestedArray("pin");
     hw_btn_ins_0_pin.add(btnPin[i]);
+    
     JsonArray hw_btn_ins_0_macros = hw_btn_ins_0.createNestedArray("macros");
     hw_btn_ins_0_macros.add(macroButton[i]);
     hw_btn_ins_0_macros.add(macroLongPress[i]);
     hw_btn_ins_0_macros.add(macroDoublePress[i]);
+
+    JsonArray hw_btn_ins_0_touchThreshold = hw_btn_ins_0.createNestedArray("touchThreshold");
+    hw_btn_ins_0_touchThreshold.add(touchThresholds[i]);
   }
 
   hw_btn[F("tt")] = touchThreshold;

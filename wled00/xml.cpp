@@ -483,11 +483,19 @@ void getSettingsJS(byte subPage, char* dest)
       oappend(SET_F("addBtn("));
       oappend(itoa(i,nS,10));  oappend(",");
       oappend(itoa(btnPin[i],nS,10)); oappend(",");
-      oappend(itoa(buttonType[i],nS,10));
+      oappend(itoa(buttonType[i],nS,10)); oappend(",");
+      oappend(itoa(touchThresholds[i],nS,10));
       oappend(SET_F(");"));
     }
     sappend('c',SET_F("IP"),disablePullUp);
     sappend('v',SET_F("TT"),touchThreshold);
+    //  for (uint8_t i=0; i<WLED_MAX_BUTTONS; i++) {
+    //   oappend(SET_F("addBtn("));
+    //   oappend(itoa(i,nS,10));  oappend(",");
+    //   oappend(itoa(touchThreshold[i],nS,10)); oappend(",");
+    //   oappend(itoa(buttonType[i],nS,10));
+    //   oappend(SET_F(");"));
+    // }
     sappend('v',SET_F("IR"),irPin);
     sappend('v',SET_F("IT"),irEnabled);
     sappend('c',SET_F("MSO"),!irApplyToAllSelected);

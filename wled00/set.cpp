@@ -187,9 +187,12 @@ void handleSettingsSet(AsyncWebServerRequest *request, byte subPage)
     for (uint8_t i=0; i<WLED_MAX_BUTTONS; i++) {
       char bt[4] = "BT"; bt[2] = (i<10?48:55)+i; bt[3] = 0; // button pin (use A,B,C,... if WLED_MAX_BUTTONS>10)
       char be[4] = "BE"; be[2] = (i<10?48:55)+i; be[3] = 0; // button type (use A,B,C,... if WLED_MAX_BUTTONS>10)
+      char tt[4] = "TT"; be[2] = (i<10?48:55)+i; be[3] = 0; // button type (use A,B,C,... if WLED_MAX_BUTTONS>10)
       int hw_btn_pin = request->arg(bt).toInt();
+      int hw_btn_touchThreshold = request->arg(tt).toInt();
       if (pinManager.allocatePin(hw_btn_pin,false,PinOwner::Button)) {
         btnPin[i] = hw_btn_pin;
+        touchThresholds[i] = hw_btn_touchThreshold;
         buttonType[i] = request->arg(be).toInt();
       #ifdef ARDUINO_ARCH_ESP32
         // ESP32 only: check that analog button pin is a valid ADC gpio

@@ -450,53 +450,55 @@ Length: <input type="number" name="XC${i}" id="xc${i}" class="l" min="1" max="65
 			gId("com_rem").style.display = (i>0) ? "inline":"none";
 		}
 
-		function addBtn(i,p,t) {
-			var c = gId("btns").innerHTML;
-			var bt = "BT" + String.fromCharCode((i<10?48:55)+i);
-			var be = "BE" + String.fromCharCode((i<10?48:55)+i);
-			c += `Button ${i} GPIO: <input type="number" name="${bt}" onchange="UI()" class="xs" value="${p}">`;
-			c += `&nbsp;<select name="${be}">`
-			c += `<option value="0" ${t==0?"selected":""}>Disabled</option>`;
-			c += `<option value="2" ${t==2?"selected":""}>Pushbutton</option>`;
-			c += `<option value="3" ${t==3?"selected":""}>Push inverted</option>`;
-			c += `<option value="4" ${t==4?"selected":""}>Switch</option>`;
-			c += `<option value="5" ${t==5?"selected":""}>PIR sensor</option>`;
-			c += `<option value="6" ${t==6?"selected":""}>Touch</option>`;
-			c += `<option value="7" ${t==7?"selected":""}>Analog</option>`;
-			c += `<option value="8" ${t==8?"selected":""}>Analog inverted</option>`;
-			c += `</select>`;
-			c += `<span style="cursor: pointer;" onclick="off('${bt}')">&nbsp;&#x2715;</span><br>`;
-			gId("btns").innerHTML = c;
-		}
-		function tglSi(cs) {
-			customStarts = cs;
-			if (!customStarts) startsDirty = []; //set all starts to clean
-			UI();
-		}
-		function checkSi() { //on load, checks whether there are custom start fields
-			var cs = false;
-			for (var i=1; i < d.getElementsByClassName("iST").length; i++) {
-				var v = parseInt(gId("ls"+(i-1)).value) + parseInt(d.getElementsByName("LC"+(i-1))[0].value);
-				if (v != parseInt(gId("ls"+i).value)) {cs = true; startsDirty[i] = true;}
-			}
-			if (gId("ls0") && parseInt(gId("ls0").value) != 0) {cs = true; startsDirty[0] = true;}
-			gId("si").checked = cs;
-			tglSi(cs);
-		}
-		function uploadFile(name) {
-			var req = new XMLHttpRequest();
-			req.addEventListener('load', function(){showToast(this.responseText,this.status >= 400)});
-			req.addEventListener('error', function(e){showToast(e.stack,true);});
-			req.open("POST", "/upload");
-			var formData = new FormData();
-			formData.append("data", d.Sf.data.files[0], name);
-			req.send(formData);
-			d.Sf.data.value = '';
-			return false;
-		}
-		// https://stackoverflow.com/questions/7346563/loading-local-json-file
-		function loadCfg(o) {
-			var f, fr;
+    function addBtn(i,p,t,h) {
+      var c = gId("btns").innerHTML;
+      var bt = "BT" + String.fromCharCode((i<10?48:55)+i);
+      var be = "BE" + String.fromCharCode((i<10?48:55)+i);
+      var tt = "TT" + String.fromCharCode((i<10?48:55)+i);
+      c += `Button ${i} GPIO: <input type="number" min="-1" max="48" name="${bt}" onchange="UI()" class="xs" value="${p}">`;
+      c += `<input type="number" min="0" max="100" name="${tt}" onchange="UI()" class="xs" value="${h}">`;
+      c += `&nbsp;<select name="${be}">`
+      c += `<option value="0" ${t==0?"selected":""}>Disabled</option>`;
+      c += `<option value="2" ${t==2?"selected":""}>Pushbutton</option>`;
+      c += `<option value="3" ${t==3?"selected":""}>Push inverted</option>`;
+      c += `<option value="4" ${t==4?"selected":""}>Switch</option>`;
+      c += `<option value="5" ${t==5?"selected":""}>PIR sensor</option>`;
+      c += `<option value="6" ${t==6?"selected":""}>Touch</option>`;
+      c += `<option value="7" ${t==7?"selected":""}>Analog</option>`;
+      c += `<option value="8" ${t==8?"selected":""}>Analog inverted</option>`;
+      c += `</select>`;
+      c += `<span style="cursor: pointer;" onclick="off('${bt}')">&nbsp;&#x2715;</span><br>`;
+      gId("btns").innerHTML = c;
+    }
+    function tglSi(cs) {
+      customStarts = cs;
+      if (!customStarts) startsDirty = []; //set all starts to clean
+      UI();
+    }
+    function checkSi() { //on load, checks whether there are custom start fields
+      var cs = false;
+      for (var i=1; i < d.getElementsByClassName("iST").length; i++) {
+        var v = parseInt(gId("ls"+(i-1)).value) + parseInt(d.getElementsByName("LC"+(i-1))[0].value);
+        if (v != parseInt(gId("ls"+i).value)) {cs = true; startsDirty[i] = true;}
+      }
+      if (gId("ls0") && parseInt(gId("ls0").value) != 0) {cs = true; startsDirty[0] = true;}
+      gId("si").checked = cs;
+      tglSi(cs);
+    }
+    function uploadFile(name) {
+      var req = new XMLHttpRequest();
+      req.addEventListener('load', function(){showToast(this.responseText,this.status >= 400)});
+      req.addEventListener('error', function(e){showToast(e.stack,true);});
+      req.open("POST", "/upload");
+      var formData = new FormData();
+      formData.append("data", d.Sf.data.files[0], name);
+      req.send(formData);
+      d.Sf.data.value = '';
+      return false;
+    }
+    // https://stackoverflow.com/questions/7346563/loading-local-json-file
+    function loadCfg(o) {
+      var f, fr;
 
 			if (typeof window.FileReader !== 'function') {
 				alert("The file API isn't supported on this browser yet.");

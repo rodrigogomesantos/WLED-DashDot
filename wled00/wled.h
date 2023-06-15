@@ -534,7 +534,12 @@ WLED_GLOBAL bool buttonLongPressed[WLED_MAX_BUTTONS]          _INIT({false});
 WLED_GLOBAL unsigned long buttonPressedTime[WLED_MAX_BUTTONS] _INIT({0});
 WLED_GLOBAL unsigned long buttonWaitTime[WLED_MAX_BUTTONS]    _INIT({0});
 WLED_GLOBAL bool disablePullUp                                _INIT(false);
-WLED_GLOBAL byte touchThreshold                               _INIT(TOUCH_THRESHOLD);
+  WLED_GLOBAL byte touchThreshold                             _INIT(32);
+#ifdef TOUCH_THRESHOLD 
+  WLED_GLOBAL byte touchThreshold                             _INIT(TOUCH_THRESHOLD);
+#else
+  WLED_GLOBAL byte touchThresholds[]                          _INIT(BTN_TOUCH_THRESHOLDS);
+#endif
 
 // notifications
 WLED_GLOBAL bool notifyDirectDefault _INIT(notifyDirect);

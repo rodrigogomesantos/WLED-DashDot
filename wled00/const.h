@@ -403,7 +403,30 @@
 #endif
 #endif
 
-#define TOUCH_THRESHOLD 32 // limit to recognize a touch, higher value means more sensitive
+//Button settings
+//#define BTNPIN 15//GPIO0
+
+// Enable multiples thresholds values for touch btn
+#define MULTIPLES_BTNPINS
+
+#if !defined(BTNPIN) && defined(MULTIPLES_BTNPINS)
+ #ifdef ESP8266
+  #define BTN_PINS {15, 30 , 50}
+  #else
+  #define BTN_PINS {15, 13 , 12, 14}
+  #endif
+#endif
+
+//#define TOUCH_THRESHOLD 32 // limit to recognize a touch, higher value means more sensitive
+
+// Enable multiples thresholds values for touch btn
+#ifndef TOUCH_THRESHOLD
+ #ifdef ESP8266
+  #define BTN_TOUCH_THRESHOLDS {60, 30 , 50}
+  #else
+  #define BTN_TOUCH_THRESHOLDS {50, 45 , 51, 61}
+  #endif
+#endif
 
 // Size of buffer for API JSON object (increase for more segments)
 #ifdef ESP8266

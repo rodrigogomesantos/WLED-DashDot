@@ -11,8 +11,10 @@
  */
 //#include "../usermods/EXAMPLE_v2/usermod_v2_example.h"
 
-#ifdef USERMOD_BATTERY
-  #include "../usermods/Battery/usermod_v2_Battery.h"
+//#define USERMOD_BUZZER ;
+
+#ifdef USERMOD_BATTERY_STATUS_BASIC
+  #include "../usermods/battery_status_basic/usermod_v2_battery_status_basic.h"
 #endif
 
 #ifdef USERMOD_DALLASTEMPERATURE
